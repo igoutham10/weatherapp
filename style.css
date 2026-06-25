@@ -18,20 +18,8 @@ body {
     padding: 12px;
 }
 
-.form-control:focus {
-    background-color: #2a374a;
-    color: white;
-    box-shadow: none;
-}
-
-#ref {
-    margin-top: 24px;
-}
-
-.form-control:focus {
-    background-color: #2a374a;
-    color: white;
-    box-shadow: none;
+#textBox {
+    color: white !important;
 }
 
 .form-control:focus {
@@ -42,4 +30,39 @@ body {
 
 #ref {
     margin-top: 24px;
+}
+
+.forecast-item {
+    min-width: 80px;
+}
+
+@media(max-width:768px) {
+    body {
+        padding-top: 20px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .weather-card {
+        padding: 20px;
+    }
+
+    .forecast-item {
+        min-width: 75px;
+    }
+
+    .display-1 {
+        font-size: 3.2rem;
+    }
+
+    .forecast-column {
+        margin-top: 20px;
+    }
+
+    .spinner-border {
+        display: block;
+        margin: 20px auto;
+    }
 }

@@ -37,11 +37,11 @@ function display(data) {
     let htmlCode = `
         <div class="col-md-8">
             <div class="weather-card main-card mb-4">
-                <div class="d-flex justify-content-between">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center text-center text-md-start">
                     <div>
                         <h2 class="fw-bold">${location.name}</h2>
                         <p class="text-secondary">Chance of rain: ${sevenDay[0].day.daily_chance_of_rain}%</p>
-                        <h1 class="display-1 fw-bold mt-4">${current.temp_c}°</h1>
+                        <h1 class="ms-2 fw-bold mt-4">${current.temp_c}°</h1>
                     </div>
                     <div>
                         <img src="${current.condition.icon}" width="150" alt="weather-icon">
@@ -50,7 +50,7 @@ function display(data) {
 
                 <div class="mt-5">
                     <p class="text-uppercase small text-secondary fw-bold">Today's Forecast</p>
-                    <div class="d-flex justify-content-between text-center overflow-auto">
+                    <div class="d-flex gap-3 overflow-auto text-center pb-2">
                         ${[6, 9, 12, 15, 18, 21].map(hour => {
         let icon = dailyForecast[hour].condition.icon;
         let temp = dailyForecast[hour].temp_c;
@@ -91,7 +91,7 @@ function display(data) {
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4 mt-3 mt-md-0">
             <div class="weather-card h-100">
                 <p class="text-uppercase small text-secondary fw-bold mb-4">7-Day Forecast</p>
                 ${sevenDay.map(day => {
