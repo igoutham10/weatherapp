@@ -1,55 +1,37 @@
-async function getData(e){
+async function getData(e) {
     e.preventDefault();
-    let loadingElem=document.getElementById("loading");
+    let loadingElem = document.getElementById("loading");
 
 
-    let textboxElem=document.getElementById("textBox");
-    let city=textboxElem.value.trim();
-    if(city==""){
+    let textboxElem = document.getElementById("textBox");
+    let city = textboxElem.value.trim();
+    if (city == "") {
         alert("please enter city name")
         return;
     }
 
     loadingElem.style.display = "block";
-   
-    let api =`https://api.weatherapi.com/v1/forecast.json?key=76a368caa21646d7b5740739251402&q=${city}`;
-    try{
+
+    let api = `https://api.weatherapi.com/v1/forecast.json?key=76a368caa21646d7b5740739251402&q=${city}`;
+    try {
         let res = await fetch(api);
         let data = await res.json();
         display(data)
     }
-    catch(err){
+    catch (err) {
         alert("please check city name");
     }
-    finally{
-        loadingElem.style.display="none";
-        textboxElem.value="";
+    finally {
+        loadingElem.style.display = "none";
+        textboxElem.value = "";
     }
 }
 
-
-// function display(data){
-//     let htmlCode=`
-//          <div class="col-6">
-//             <h1>${data.location.name}</h1>
-//             <p>
-//                 ${data.current.condition.text}
-//             </p>
-//             <h1>${data.current.temp_c} <sup>o</sup>C</h1>
-//         </div>
-//         <div class="col-6">
-//             <img src=${data.current.condition.icon} alt="">
-//         </div>
-//     `
-//     document.getElementById("ref").innerHTML=htmlCode;
-// }
-
-
 function display(data) {
-    
+
     let { location, current, forecast } = data;
-    let dailyForecast = forecast.forecastday[0].hour; 
-    let sevenDay = forecast.forecastday; 
+    let dailyForecast = forecast.forecastday[0].hour;
+    let sevenDay = forecast.forecastday;
 
 
     let htmlCode = `
@@ -70,16 +52,16 @@ function display(data) {
                     <p class="text-uppercase small text-secondary fw-bold">Today's Forecast</p>
                     <div class="d-flex justify-content-between text-center overflow-auto">
                         ${[6, 9, 12, 15, 18, 21].map(hour => {
-                            let icon = dailyForecast[hour].condition.icon;
-                            let temp = dailyForecast[hour].temp_c;
-                            return `
+        let icon = dailyForecast[hour].condition.icon;
+        let temp = dailyForecast[hour].temp_c;
+        return `
                                 <div class="forecast-item">
                                     <span class="small text-secondary">${hour}:00 ${hour < 12 ? 'AM' : 'PM'}</span>
                                     <img src="${icon}" width="40" class="d-block mx-auto my-2">
                                     <span class="fw-bold">${temp}°</span>
                                 </div>
                             `;
-                        }).join('')}
+    }).join('')}
                     </div>
                 </div>
             </div>
@@ -113,8 +95,8 @@ function display(data) {
             <div class="weather-card h-100">
                 <p class="text-uppercase small text-secondary fw-bold mb-4">7-Day Forecast</p>
                 ${sevenDay.map(day => {
-                    let dayName = new Date(day.date).toLocaleDateString('en-US', {weekday: 'short'});
-                    return `
+        let dayName = new Date(day.date).toLocaleDateString('en-US', { weekday: 'short' });
+        return `
                         <div class="d-flex justify-content-between align-items-center border-bottom border-secondary py-3">
                             <span class="text-secondary">${dayName}</span>
                             <div class="d-flex align-items-center">
@@ -127,7 +109,7 @@ function display(data) {
                             </div>
                         </div>
                     `;
-                }).join('')}
+    }).join('')}
             </div>
         </div>
     `;

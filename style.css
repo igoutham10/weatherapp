@@ -24,3 +24,22 @@ body {
     box-shadow: none;
 }
 
+#ref {
+    margin-top: 24px;
+}
+
+.form-control:focus {
+    background-color: #2a374a;
+    color: white;
+    box-shadow: none;
+}
+
+.form-control:focus {
+    background-color: #2a374a;
+    color: white;
+    box-shadow: none;
+}
+
+#ref {
+    margin-top: 24px;
+}
